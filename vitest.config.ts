@@ -1,6 +1,6 @@
 import { resolve } from 'node:path'
 import vue from '@vitejs/plugin-vue'
-import { defineConfig } from 'vitest/config'
+import { coverageConfigDefaults, defineConfig } from 'vitest/config'
 
 const r = (p: string) => resolve(__dirname, p)
 
@@ -16,24 +16,48 @@ export default defineConfig({
     ],
   },
   test: {
-    environment: 'jsdom',
-    globals: true,
-    exclude: ['**/node_modules/**'],
-    include: ['./**/*.test.{ts,js}'],
+    reporters: 'default',
+    env: {
+      TZ: 'UTC-8',
+    },
     coverage: {
       provider: 'istanbul',
+      exclude: [
+        ...coverageConfigDefaults.exclude,
+      ],
     },
-    globalSetup: './vitest.global.ts',
-    setupFiles: './vitest.setup.ts',
-    server: {
-      deps: {
-        inline: ['vitest-canvas-mock'],
+    clearMocks: true,
+    projects: [
+      {
+        resolve: { alias: { vue: 'vue/dist/vue.esm-bundler.js' } },
+        test: {
+          include: ['src/**/*.browser.{test,spec}.ts'],
+          name: 'browser',
+          setupFiles: ['vitest-browser-vue'],
+          browser: {
+            enabled: true,
+            provider: 'playwright',
+            headless: true,
+            instances: [
+              { browser: 'chromium' },
+              { browser: 'firefox' },
+              { browser: 'webkit' },
+            ],
+          },
+        },
       },
-    },
-    environmentOptions: {
-      jsdom: {
-        resources: 'usable',
+      {
+        test: {
+          name: 'unit',
+          environment: 'jsdom',
+          include: [
+            'src/**/*.{test,spec}.ts',
+          ],
+          server: {
+            deps: { inline: ['vue', 'msw', 'vitest-package-exports'] },
+          },
+        },
       },
-    },
+    ],
   },
 })
