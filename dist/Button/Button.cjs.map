@@ -1,0 +1,1 @@
+{"version":3,"file":"Button.cjs","sources":["../../src/Button/Button.vue"],"sourcesContent":["<script lang=\"ts\" setup>\r\n</script>\r\n\r\n<template>\r\n  <button>\r\n    <slot />\r\n  </button>\r\n</template>\r\n"],"names":["_createElementBlock","_renderSlot"],"mappings":";;;;;;;;;;;;;;;2BAIEA,sBAAA,CAES,QAAA,EAAA,IAAA,EAAA;IADPC,cAAA,CAAQ,IAAA,CAAA,MAAA,EAAA,SAAA;;;;;;;"}
