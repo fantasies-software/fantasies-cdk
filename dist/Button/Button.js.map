@@ -1,1 +1,0 @@
-{"version":3,"file":"Button.js","sources":["../../src/Button/Button.vue"],"sourcesContent":["<script lang=\"ts\" setup>\n</script>\n\n<template>\n  <button>\n    <slot />\n  </button>\n</template>\n"],"names":["_createElementBlock","_renderSlot"],"mappings":";;;;;;;;;;;;;uBAIEA,kBAAA,CAES,QAAA,EAAA,IAAA,EAAA;IADPC,UAAA,CAAQ,IAAA,CAAA,MAAA,EAAA,SAAA;;;;;;;"}
