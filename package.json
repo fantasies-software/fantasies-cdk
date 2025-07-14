@@ -1,6 +1,6 @@
 {
   "name": "fantasies-cdk",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "packageManager": "yarn@4.9.2",
   "description": "",
   "author": "devcui <devcui@outlook.com>",
@@ -20,9 +20,14 @@
     "typescript",
     "vite"
   ],
+  "files": [
+    "dist/*",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
-    "build": "npm run type:check && npm run build-only",
-    "build-only": "vite build",
+    "build": "npm run type:check && npm run build:only",
+    "build:only": "vite build",
     "watch": "vite build --watch",
     "type:check": "vue-tsc -p tsconfig.check.json --noEmit",
     "type:gen": "vue-tsc --declaration  --emitDeclarationOnly",
