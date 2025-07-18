@@ -74,7 +74,7 @@ export function isString(value: unknown): value is string {
  * @returns True if the value is a number and not NaN, false otherwise
  */
 export function isNumber(value: unknown): value is number {
-  return typeof value === 'number' && !isNaN(value)
+  return typeof value === 'number' && !Number.isNaN(value)
 }
 
 /**
@@ -101,7 +101,7 @@ export function isFloat(value: unknown): value is number {
  * @returns True if the value is a Date object, false otherwise
  */
 export function isDate(value: unknown): value is Date {
-  return value instanceof Date && !isNaN(value.getTime())
+  return value instanceof Date && !Number.isNaN(value.getTime())
 }
 
 /**
@@ -148,7 +148,7 @@ export function isEmpty(value: unknown): boolean {
 
   // Date
   if (isDate(value))
-    return isNaN(value.getTime())
+    return Number.isNaN(value.getTime())
 
   // Array-like objects
   if (isArray(value))
