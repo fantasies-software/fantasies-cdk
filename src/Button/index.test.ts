@@ -1,5 +1,5 @@
-import { computed } from "@vue/runtime-core"
-import { describe, expect, it, vi } from "vitest"
+import { computed } from '@vue/runtime-core'
+import { describe, expect, it, vi } from 'vitest'
 
 describe('computed', () => {
   it('is lazy', () => {

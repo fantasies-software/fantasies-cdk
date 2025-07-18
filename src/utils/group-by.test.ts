@@ -9,7 +9,7 @@ const data = [
 ]
 
 describe('group-by.ts', () => {
-  describe("groupBy", () => {
+  describe('groupBy', () => {
     it(`should be equal ['boy','girl']`, () => {
       const result = groupBy(data, item => item.sex)
       expect(Object.keys(result)).toEqual(['boy', 'girl'])

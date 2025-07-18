@@ -41,12 +41,12 @@ export function isNil(value: unknown): value is null | undefined {
  */
 export function isPrimitive(value: unknown): value is string | number | boolean | symbol | null | undefined {
   return (
-    typeof value === 'string' ||
-    typeof value === 'number' ||
-    typeof value === 'boolean' ||
-    typeof value === 'symbol' ||
-    value === null ||
-    value === undefined
+    typeof value === 'string'
+    || typeof value === 'number'
+    || typeof value === 'boolean'
+    || typeof value === 'symbol'
+    || value === null
+    || value === undefined
   )
 }
 
@@ -119,11 +119,11 @@ export function isRegexp(value: unknown): value is RegExp {
  * @returns True if the value is a Promise, false otherwise
  */
 export function isPromise(value: unknown): value is Promise<unknown> {
-  return value instanceof Promise ||
-    (value !== null &&
-     typeof value === 'object' &&
-     typeof (value as any).then === 'function' &&
-     typeof (value as any).catch === 'function')
+  return value instanceof Promise
+    || (value !== null
+      && typeof value === 'object'
+      && typeof (value as any).then === 'function'
+      && typeof (value as any).catch === 'function')
 }
 
 /**
@@ -133,30 +133,40 @@ export function isPromise(value: unknown): value is Promise<unknown> {
  */
 export function isEmpty(value: unknown): boolean {
   // Primitives
-  if (value === null || value === undefined) return true
-  if (typeof value === 'boolean') return false
-  if (typeof value === 'number') return value === 0
-  if (typeof value === 'string') return value.length === 0
-  if (typeof value === 'symbol') return false
-  if (typeof value === 'function') return false
-  
+  if (value === null || value === undefined)
+    return true
+  if (typeof value === 'boolean')
+    return false
+  if (typeof value === 'number')
+    return value === 0
+  if (typeof value === 'string')
+    return value.length === 0
+  if (typeof value === 'symbol')
+    return false
+  if (typeof value === 'function')
+    return false
+
   // Date
-  if (isDate(value)) return isNaN(value.getTime())
-  
+  if (isDate(value))
+    return isNaN(value.getTime())
+
   // Array-like objects
-  if (isArray(value)) return value.length === 0
-  
+  if (isArray(value))
+    return value.length === 0
+
   // Objects with size property (Set, Map)
-  if (typeof (value as any).size === 'number') return (value as any).size === 0
-  
+  if (typeof (value as any).size === 'number')
+    return (value as any).size === 0
+
   // Objects with length property
-  if (typeof (value as any).length === 'number') return (value as any).length === 0
-  
+  if (typeof (value as any).length === 'number')
+    return (value as any).length === 0
+
   // Plain objects
   if (typeof value === 'object') {
     return Object.keys(value).length === 0
   }
-  
+
   return false
 }
 
@@ -168,56 +178,63 @@ export function isEmpty(value: unknown): boolean {
  */
 export function isEqual<T>(pre: T, next: T): boolean {
   // Same reference or same primitive value (handles NaN, +0/-0, etc.)
-  if (Object.is(pre, next)) return true
-  
+  if (Object.is(pre, next))
+    return true
+
   // Handle null/undefined cases
   if (pre === null || pre === undefined || next === null || next === undefined) {
     return pre === next
   }
-  
+
   // Different types
-  if (typeof pre !== typeof next) return false
-  
+  if (typeof pre !== typeof next)
+    return false
+
   // Handle Date objects
   if (isDate(pre) && isDate(next)) {
     return pre.getTime() === next.getTime()
   }
-  
+
   // Handle RegExp objects
   if (isRegexp(pre) && isRegexp(next)) {
     return pre.toString() === next.toString()
   }
-  
+
   // Handle Arrays
   if (isArray(pre) && isArray(next)) {
-    if (pre.length !== next.length) return false
+    if (pre.length !== next.length)
+      return false
     for (let i = 0; i < pre.length; i++) {
-      if (!isEqual(pre[i], next[i])) return false
+      if (!isEqual(pre[i], next[i]))
+        return false
     }
     return true
   }
-  
+
   // Handle primitives
   if (typeof pre !== 'object') {
     return pre === next
   }
-  
+
   // Handle objects (including custom objects)
   if (typeof pre === 'object' && typeof next === 'object') {
     const preKeys = Reflect.ownKeys(pre as object)
     const nextKeys = Reflect.ownKeys(next as object)
-    
+
     // Different number of keys
-    if (preKeys.length !== nextKeys.length) return false
-    
+    if (preKeys.length !== nextKeys.length)
+      return false
+
     // Check if all keys exist in both objects and values are equal
     for (const key of preKeys) {
-      if (!Reflect.has(next as object, key)) return false
-      if (!isEqual((pre as any)[key], (next as any)[key])) return false
+      if (!Reflect.has(next as object, key))
+        return false
+      if (!isEqual((pre as any)[key], (next as any)[key]))
+        return false
     }
-    
+
     return true
   }
-  
+
   return false
 }

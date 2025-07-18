@@ -1,20 +1,20 @@
 import { describe, expect, it } from 'vitest'
 import {
-  isSymbol,
   isArray,
-  isObject,
-  isNil,
-  isPrimitive,
-  isFunction,
-  isString,
-  isNumber,
-  isInt,
-  isFloat,
   isDate,
-  isRegexp,
-  isPromise,
   isEmpty,
   isEqual,
+  isFloat,
+  isFunction,
+  isInt,
+  isNil,
+  isNumber,
+  isObject,
+  isPrimitive,
+  isPromise,
+  isRegexp,
+  isString,
+  isSymbol,
 } from './typed'
 
 describe('typed.ts', () => {
@@ -83,7 +83,7 @@ describe('typed.ts', () => {
   describe('isFunction', () => {
     it('should return true for functions', () => {
       expect(isFunction(() => { })).toBe(true)
-      expect(isFunction(function test() { })).toBe(true)
+      expect(isFunction(() => { })).toBe(true)
     })
     it('should return false for non-functions', () => {
       expect(isFunction('string')).toBe(false)
@@ -107,7 +107,7 @@ describe('typed.ts', () => {
       expect(isNumber(0)).toBe(true)
     })
     it('should return false for NaN or non-numbers', () => {
-      expect(isNumber(NaN)).toBe(false)
+      expect(isNumber(Number.NaN)).toBe(false)
       expect(isNumber('string')).toBe(false)
     })
   })
@@ -227,7 +227,6 @@ describe('typed.ts additional tests for full coverage', () => {
       expect(isEqual(obj1, obj2)).toBe(true)
     })
 
-
     it('should return false for objects with different keys', () => {
       const obj1 = { a: 1, b: 2 }
       const obj2 = { a: 1, c: 3 } as any
@@ -287,9 +286,8 @@ describe('typed.ts additional tests for full coverage', () => {
       expect(isEqual(true, false)).toBe(false)
     })
 
-
     it('should handle NaN comparison', () => {
-      expect(isEqual(NaN, NaN)).toBe(true)
+      expect(isEqual(Number.NaN, Number.NaN)).toBe(true)
     })
 
     it('should handle mixed type comparisons', () => {
@@ -317,22 +315,22 @@ describe('typed.ts additional tests for full coverage', () => {
         a: 1,
         b: {
           c: [1, 2, { d: 'test' }],
-          e: new Date('2023-01-01')
-        }
+          e: new Date('2023-01-01'),
+        },
       }
       const complex2 = {
         a: 1,
         b: {
           c: [1, 2, { d: 'test' }],
-          e: new Date('2023-01-01')
-        }
+          e: new Date('2023-01-01'),
+        },
       }
       const complex3 = {
         a: 1,
         b: {
           c: [1, 2, { d: 'different' }],
-          e: new Date('2023-01-01')
-        }
+          e: new Date('2023-01-01'),
+        },
       }
       expect(isEqual(complex1, complex2)).toBe(true)
       expect(isEqual(complex1, complex3)).toBe(false)
@@ -361,7 +359,7 @@ describe('typed.ts additional tests for full coverage', () => {
 
     it('should return false for functions', () => {
       expect(isEmpty(() => { })).toBe(false)
-      expect(isEmpty(function test() { })).toBe(false)
+      expect(isEmpty(() => { })).toBe(false)
     })
 
     it('should handle array-like objects with length property', () => {
@@ -383,21 +381,21 @@ describe('typed.ts additional tests for full coverage', () => {
     it('should return true for thenable objects', () => {
       const thenable = {
         then: () => { },
-        catch: () => { }
+        catch: () => { },
       }
       expect(isPromise(thenable)).toBe(true)
     })
 
     it('should return false for objects with only then method', () => {
       const notPromise = {
-        then: () => { }
+        then: () => { },
       }
       expect(isPromise(notPromise)).toBe(false)
     })
 
     it('should return false for objects with only catch method', () => {
       const notPromise = {
-        catch: () => { }
+        catch: () => { },
       }
       expect(isPromise(notPromise)).toBe(false)
     })
@@ -466,7 +464,7 @@ describe('typed.ts additional tests for full coverage', () => {
     })
 
     it('should return false for NaN', () => {
-      expect(isFloat(NaN)).toBe(false)
+      expect(isFloat(Number.NaN)).toBe(false)
     })
   })
 })

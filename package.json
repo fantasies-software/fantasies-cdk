@@ -21,19 +21,21 @@
     "vite"
   ],
   "files": [
-    "dist/*",
+    "LICENSE",
     "README.md",
-    "LICENSE"
+    "dist/*"
   ],
   "scripts": {
-    "build": "npm run type:check && npm run build:only",
+    "build": "yarn type:check && yarn build:only",
     "build:only": "vite build",
     "watch": "vite build --watch",
     "type:check": "vue-tsc -p tsconfig.check.json --noEmit",
     "type:gen": "vue-tsc --declaration  --emitDeclarationOnly",
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
-    "test:update": "vitest -u"
+    "test:update": "vitest -u",
+    "lint": "eslint . --ext .ts,.vue",
+    "lint:fix": "eslint . --ext .ts,.vue --fix"
   },
   "peerDependencies": {
     "vue": "^3.5.17"

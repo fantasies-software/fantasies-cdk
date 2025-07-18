@@ -22,7 +22,7 @@ describe('zip.ts', () => {
       const result = zipAll(['a', 'b'], [1, 2], [true, false], [null, undefined])
       expect(result).toEqual([
         ['a', 1, true, null],
-        ['b', 2, false, undefined]
+        ['b', 2, false, undefined],
       ])
     })
 
@@ -89,8 +89,8 @@ describe('zip.ts', () => {
     })
 
     it('should handle very long arrays', () => {
-      const arr1 = new Array(1000).fill('a')
-      const arr2 = new Array(1000).fill(1)
+      const arr1 = Array.from({ length: 1000 }).fill('a')
+      const arr2 = Array.from({ length: 1000 }).fill(1)
       const result = zipAll(arr1, arr2)
       expect(result).toHaveLength(1000)
       expect(result[0]).toEqual(['a', 1])
