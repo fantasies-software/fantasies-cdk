@@ -1,0 +1,57 @@
+name: Test Pull Request
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    permissions:
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: latest
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Lint Code
+        run: npm run lint
+
+      - name: Build Code
+        run: npm run build
+
+      - name: Install Browser
+        run: npx playwright install --with-deps
+
+      - name: Test Code
+        run: npm run test
+
+      - name: Test Coverage
+        run: npm run test:coverage | sed 's/\x1b\[[0-9;]*m//g' > coverage.txt
+
+      - name: Extract Coverage Report
+        id: coverage
+        run: |
+          echo "report<<EOF" >> $GITHUB_OUTPUT
+          cat coverage.txt >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Comment Coverage on PR
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            ## ✅ Test Coverage Summary
+
+            ```
+            ${{ steps.coverage.outputs.report }}
+            ```
+        env:
+          GITHUB_TOKEN: ${{ secrets.CI_TOKEN }}
