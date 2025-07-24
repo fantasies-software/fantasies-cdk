@@ -1,4 +1,6 @@
+export * from './array'
 export * from './boil'
 export * from './group-by'
+export * from './sum'
 export * from './typed'
 export * from './zip'
