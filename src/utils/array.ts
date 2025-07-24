@@ -1,3 +1,5 @@
+import { isArray, isFunction } from './typed'
+
 /**
  *  get the first element of an array or return a default value
  *  eg: getFirst([1, 2, 3]) // returns 1
@@ -24,4 +26,27 @@ export function getLast<T>(array: readonly T[], defaultValue?: T): T | null {
     return defaultValue
   }
   return null
+}
+
+/**
+ *  Converts an array of objects into a record (object) where the keys are derived from each object
+ *  eg: objectify([{ id: 1, name: 'Alice' }, { id: 2, name: 'Bob' }], item => item.id, item => item.name)  =>  { '1': 'Alice', '2': 'Bob' }
+ */
+export function toDic<T, Key extends string | number | symbol, Value = T>(
+  array: readonly T[],
+  getKey: (item: T) => Key,
+  getValue: (item: T) => Value = item => item as unknown as Value,
+): Record<Key, Value> {
+  if (!isArray(array)) {
+    return {} as Record<Key, Value>
+  }
+  if (!isFunction(getKey) || !isFunction(getValue)) {
+    return {} as Record<Key, Value>
+  }
+  return array.reduce((acc, item) => {
+    const key = getKey(item)
+    const value = getValue(item)
+    acc[key] = value
+    return acc
+  }, {} as Record<Key, Value>)
 }
