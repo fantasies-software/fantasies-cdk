@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 import {
   getFirst,
   getLast,
+  selectMap,
   toDic,
 } from './array'
 
@@ -50,5 +51,33 @@ describe('toDic', () => {
   it('should return empty object if getKey or getValue is not a function', () => {
     expect(toDic(array, null as any)).toEqual({})
     expect(toDic(array, item => item.id, null as any)).toEqual({})
+  })
+})
+
+describe('selectMap', () => {
+  it('returns empty array if input is not array', () => {
+    expect(selectMap(null as any, () => true, x => x)).toEqual([])
+  })
+
+  it('returns empty array if condition is not a function', () => {
+    expect(selectMap([1, 2, 3], null as any, x => x)).toEqual([])
+  })
+
+  it('returns mapped array for matching items', () => {
+    const arr = [1, 2, 3, 4]
+    const result = selectMap(arr, item => item > 2, item => item * 2)
+    expect(result).toEqual([6, 8])
+  })
+
+  it('returns empty array if no items match', () => {
+    const arr = [1, 2]
+    const result = selectMap(arr, item => item > 10, item => item * 2)
+    expect(result).toEqual([])
+  })
+
+  it('works with index in condition and mapper', () => {
+    const arr = [10, 20, 30]
+    const result = selectMap(arr, (item, idx) => idx === 1, (item, idx) => item + idx)
+    expect(result).toEqual([21])
   })
 })
