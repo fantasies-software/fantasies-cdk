@@ -1,8 +1,6 @@
 /**
  * Groups an array of items by a specified key.
- * @param array  - The array to group
- * @param by  - A function that returns the key to group by
- * @returns - An object where keys are the result of the `by` function and values are arrays of items that correspond to those keys
+ * eg: groupBy([{ id: 1, name: 'Alice' }, { id: 2, name: 'Bob' }, { id: 3, name: 'Alice' }], item => item.name) // returns { Alice: [{ id: 1, name: 'Alice' }, { id: 3, name: 'Alice' }], Bob: [{ id: 2, name: 'Bob' }] }
  */
 export function groupBy<T, K extends string | number | symbol>(array: readonly T[], by: (item: T) => K | undefined): Record<K, T[]> {
   return array.reduce((acc, item) => {
