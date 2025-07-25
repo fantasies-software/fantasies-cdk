@@ -21,6 +21,10 @@ export function debounce<TArgs extends any[]>({ delay }: { delay: number }, func
   }
   debounced.cancel = () => {
     active = false
+    if (timer !== undefined) {
+      clearTimeout(timer)
+      timer = undefined
+    }
   }
   debounced.flush = (...args: TArgs) => func(...args)
 
