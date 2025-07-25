@@ -12,5 +12,12 @@ export function min<T>(array: readonly T[], getter?: (item: T) => number): T | n
   if (!getter) {
     getter = item => item as unknown as number
   }
-  return boil(array, (pre, next) => getter(pre) < getter(next) ? pre : next)
+  return boil(array, (pre, next) => {
+    if (getter(pre) < getter(next)) {
+      return pre
+    }
+    else {
+      return next
+    }
+  })
 }

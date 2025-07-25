@@ -11,5 +11,10 @@ export function alphabetical<T>(array: readonly T[], getter: (item: T) => string
   const sorted = [...array].sort((a, b) => {
     return getter(a).toLowerCase().localeCompare(getter(b).toLowerCase())
   })
-  return order === 'desc' ? sorted.reverse() : sorted
+  if (order === 'desc') {
+    return sorted.reverse()
+  }
+  else {
+    return sorted
+  }
 }

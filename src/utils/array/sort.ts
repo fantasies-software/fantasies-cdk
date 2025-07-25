@@ -9,5 +9,10 @@ export function sort<T>(array: readonly T[], getter: (item: T) => number, order:
     return []
   }
   const sorted = [...array].sort((a, b) => getter(a) - getter(b))
-  return order === 'desc' ? sorted.reverse() : sorted
+  if (order === 'desc') {
+    return sorted.reverse()
+  }
+  else {
+    return sorted
+  }
 }
