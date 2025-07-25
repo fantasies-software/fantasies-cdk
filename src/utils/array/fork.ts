@@ -1,4 +1,4 @@
-import { isArray } from "../typed";
+import { isArray } from '../typed'
 
 /**
  *  Splits an array into two arrays based on a condition.
@@ -9,13 +9,12 @@ export function fork<T>(array: T[], condition: (item: T) => boolean): [T[], T[]]
     return [[], []]
   }
   return array.reduce((acc, item) => {
-    const [a, b] = acc;
+    const [a, b] = acc
     if (condition(item)) {
-      return [[...a, item], b];
-    } else {
-      return [a, [...b, item]];
+      return [[...a, item], b]
     }
-  },
-    [[], []] as [T[], T[]]
-  )
+    else {
+      return [a, [...b, item]]
+    }
+  }, [[], []] as [T[], T[]])
 }

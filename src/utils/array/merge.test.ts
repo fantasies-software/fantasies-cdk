@@ -6,7 +6,7 @@ describe('merge', () => {
     const root = [1, 2, 3]
     const others = [2, 3, 4]
     const result = merge(root, others, n => n)
-    expect(result).toEqual([1,2,3])
+    expect(result).toEqual([1, 2, 3])
   })
 
   it('should merge two arrays of objects based on a matcher function', () => {
@@ -22,7 +22,6 @@ describe('merge', () => {
     const result = merge(root, others, item => item.id)
     expect(result).toEqual([{ id: 1, name: 'a' }, { id: 2, name: 'c' }])
   })
-
 
   it('should return an empty array when both arrays are empty', () => {
     const result = merge([], [], n => n)
@@ -65,28 +64,24 @@ describe('merge', () => {
   it('should return root when matcher is null', () => {
     const root = [1, 2, 3]
     const others = [2, 3, 4]
-    // @ts-expect-error
-    const result = merge(root, others, null)
+    const result = merge(root, others, null as any)
     expect(result).toEqual(root)
   })
 
   it('should return root when others is null', () => {
     const root = [1, 2, 3]
-    // @ts-expect-error
-    const result = merge(root, null, n => n)
+    const result = merge(root, null as any, n => n)
     expect(result).toEqual(root)
   })
 
   it('should return empty array when root is null', () => {
     const others = [1, 2, 3]
-    // @ts-expect-error
-    const result = merge(null, others, n => n)
+    const result = merge(null as any, others, n => n)
     expect(result).toEqual([])
   })
 
   it('should handle non-array inputs gracefully', () => {
-    // @ts-expect-error
-    const result = merge(null, null, n => n)
+    const result = merge(null as any, null as any, n => n)
     expect(result).toEqual([])
   })
 })
