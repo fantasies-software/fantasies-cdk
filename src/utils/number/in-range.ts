@@ -10,12 +10,19 @@ export function inRange(number: number, startOrEnd: number, end?: number): boole
     return false
   }
   let start: number
+  let realEnd: number
   if (typeof end === 'undefined') {
-    end = startOrEnd
+    realEnd = startOrEnd
     start = 0
   }
   else {
     start = startOrEnd
+    realEnd = end
   }
-  return number >= Math.min(start, end) && number < Math.max(start, end)
+  const min = Math.min(start, realEnd)
+  const max = Math.max(start, realEnd)
+  if (number >= min && number < max) {
+    return true
+  }
+  return false
 }

@@ -8,9 +8,7 @@ export function construct<TObject extends object>(obj: TObject): object {
   if (!obj) {
     return {}
   }
-  else {
-    return Object.keys(obj).reduce((acc, path) => {
-      return set(acc, path, (obj as any)[path])
-    }, {})
-  }
+  return Object.keys(obj).reduce((acc, path) => {
+    return set(acc, path, (obj as any)[path])
+  }, {})
 }

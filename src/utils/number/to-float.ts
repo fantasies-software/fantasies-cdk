@@ -16,7 +16,5 @@ export function toFloat<T extends number | null = number>(
   if (Number.isNaN(result)) {
     return def
   }
-  else {
-    return result as T
-  }
+  return result as T
 }

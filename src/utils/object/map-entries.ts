@@ -13,11 +13,9 @@ export function mapEntries<
   if (!obj) {
     return {} as Record<TNewKey, TNewValue>
   }
-  else {
-    return Object.entries(obj).reduce((acc, [key, value]) => {
-      const [newKey, newValue] = toEntry(key as TKey, value as TValue)
-      acc[newKey] = newValue
-      return acc
-    }, {} as Record<TNewKey, TNewValue>)
-  }
+  return Object.entries(obj).reduce((acc, [key, value]) => {
+    const [newKey, newValue] = toEntry(key as TKey, value as TValue)
+    acc[newKey] = newValue
+    return acc
+  }, {} as Record<TNewKey, TNewValue>)
 }

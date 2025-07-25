@@ -176,6 +176,14 @@ describe('typed.ts', () => {
       expect(isEmpty([1, 2, 3])).toBe(false)
       expect(isEmpty({ key: 'value' })).toBe(false)
     })
+
+    it('should return false for array-like object with length > 0 and no indexed props', () => {
+      expect(isEmpty({ length: 1 })).toBe(false)
+    })
+
+    it('should return false for object with keys', () => {
+      expect(isEmpty({ a: 1 })).toBe(false)
+    })
   })
 
   describe('isEqual', () => {
@@ -188,6 +196,18 @@ describe('typed.ts', () => {
       expect(isEqual(123, 456)).toBe(false)
       expect(isEqual({ key: 'value' }, { key: 'different' })).toBe(false)
       expect(isEqual([1, 2, 3], [4, 5, 6])).toBe(false)
+    })
+
+    it('should return false if object is missing a key', () => {
+      const pre = { a: 1, b: 2 }
+      const next = { a: 1 }
+      expect(isEqual(pre, next)).toBe(false)
+    })
+
+    it('should return false if object values are not equal', () => {
+      const pre = { a: 1, b: 2 }
+      const next = { a: 1, b: 3 }
+      expect(isEqual(pre, next)).toBe(false)
     })
   })
 })

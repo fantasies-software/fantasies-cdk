@@ -4,7 +4,10 @@
  * @returns True if the value is a symbol, false otherwise
  */
 export function isSymbol(value: unknown): value is symbol {
-  return typeof value === 'symbol'
+  if (typeof value === 'symbol') {
+    return true
+  }
+  return false
 }
 
 /**
@@ -13,7 +16,10 @@ export function isSymbol(value: unknown): value is symbol {
  * @returns True if the value is an array, false otherwise
  */
 export function isArray<T>(value: unknown): value is T[] {
-  return Array.isArray(value)
+  if (Array.isArray(value)) {
+    return true
+  }
+  return false
 }
 
 /**
@@ -22,7 +28,10 @@ export function isArray<T>(value: unknown): value is T[] {
  * @returns True if the value is a plain object, false otherwise
  */
 export function isObject(value: unknown): value is object {
-  return value !== null && typeof value === 'object' && value.constructor === Object
+  if (value !== null && typeof value === 'object' && value.constructor === Object) {
+    return true
+  }
+  return false
 }
 
 /**
@@ -31,7 +40,10 @@ export function isObject(value: unknown): value is object {
  * @returns True if the value is null or undefined, false otherwise
  */
 export function isNil(value: unknown): value is null | undefined {
-  return value === null || value === undefined
+  if (value === null || value === undefined) {
+    return true
+  }
+  return false
 }
 
 /**
@@ -40,14 +52,17 @@ export function isNil(value: unknown): value is null | undefined {
  * @returns True if the value is a primitive type, false otherwise
  */
 export function isPrimitive(value: unknown): value is string | number | boolean | symbol | null | undefined {
-  return (
+  if (
     typeof value === 'string'
     || typeof value === 'number'
     || typeof value === 'boolean'
     || typeof value === 'symbol'
     || value === null
     || value === undefined
-  )
+  ) {
+    return true
+  }
+  return false
 }
 
 /**
@@ -56,7 +71,10 @@ export function isPrimitive(value: unknown): value is string | number | boolean 
  * @returns True if the value is a function, false otherwise
  */
 export function isFunction(value: unknown): value is Function {
-  return typeof value === 'function'
+  if (typeof value === 'function') {
+    return true
+  }
+  return false
 }
 
 /**
@@ -65,7 +83,10 @@ export function isFunction(value: unknown): value is Function {
  * @returns True if the value is a string, false otherwise
  */
 export function isString(value: unknown): value is string {
-  return typeof value === 'string'
+  if (typeof value === 'string') {
+    return true
+  }
+  return false
 }
 
 /**
@@ -74,7 +95,10 @@ export function isString(value: unknown): value is string {
  * @returns True if the value is a number and not NaN, false otherwise
  */
 export function isNumber(value: unknown): value is number {
-  return typeof value === 'number' && !Number.isNaN(value)
+  if (typeof value === 'number' && !Number.isNaN(value)) {
+    return true
+  }
+  return false
 }
 
 /**
@@ -83,7 +107,10 @@ export function isNumber(value: unknown): value is number {
  * @returns True if the value is an integer, false otherwise
  */
 export function isInt(value: unknown): value is number {
-  return isNumber(value) && Number.isInteger(value)
+  if (isNumber(value) && Number.isInteger(value)) {
+    return true
+  }
+  return false
 }
 
 /**
@@ -92,7 +119,10 @@ export function isInt(value: unknown): value is number {
  * @returns True if the value is a float, false otherwise
  */
 export function isFloat(value: unknown): value is number {
-  return isNumber(value) && !Number.isInteger(value)
+  if (isNumber(value) && !Number.isInteger(value)) {
+    return true
+  }
+  return false
 }
 
 /**
@@ -101,7 +131,10 @@ export function isFloat(value: unknown): value is number {
  * @returns True if the value is a Date object, false otherwise
  */
 export function isDate(value: unknown): value is Date {
-  return value instanceof Date && !Number.isNaN(value.getTime())
+  if (value instanceof Date && !Number.isNaN(value.getTime())) {
+    return true
+  }
+  return false
 }
 
 /**
@@ -110,7 +143,10 @@ export function isDate(value: unknown): value is Date {
  * @returns True if the value is a RegExp object, false otherwise
  */
 export function isRegexp(value: unknown): value is RegExp {
-  return value instanceof RegExp
+  if (value instanceof RegExp) {
+    return true
+  }
+  return false
 }
 
 /**
@@ -119,11 +155,18 @@ export function isRegexp(value: unknown): value is RegExp {
  * @returns True if the value is a Promise, false otherwise
  */
 export function isPromise(value: unknown): value is Promise<unknown> {
-  return value instanceof Promise
-    || (value !== null
-      && typeof value === 'object'
-      && typeof (value as any).then === 'function'
-      && typeof (value as any).catch === 'function')
+  if (value instanceof Promise) {
+    return true
+  }
+  if (
+    value !== null
+    && typeof value === 'object'
+    && typeof (value as any).then === 'function'
+    && typeof (value as any).catch === 'function'
+  ) {
+    return true
+  }
+  return false
 }
 
 /**
@@ -132,41 +175,60 @@ export function isPromise(value: unknown): value is Promise<unknown> {
  * @returns True if the value is considered empty, false otherwise
  */
 export function isEmpty(value: unknown): boolean {
-  // Primitives
-  if (value === null || value === undefined)
+  if (value === null || value === undefined) {
     return true
-  if (typeof value === 'boolean')
-    return false
-  if (typeof value === 'number')
-    return value === 0
-  if (typeof value === 'string')
-    return value.length === 0
-  if (typeof value === 'symbol')
-    return false
-  if (typeof value === 'function')
-    return false
-
-  // Date
-  if (isDate(value))
-    return Number.isNaN(value.getTime())
-
-  // Array-like objects
-  if (isArray(value))
-    return value.length === 0
-
-  // Objects with size property (Set, Map)
-  if (typeof (value as any).size === 'number')
-    return (value as any).size === 0
-
-  // Objects with length property
-  if (typeof (value as any).length === 'number')
-    return (value as any).length === 0
-
-  // Plain objects
-  if (typeof value === 'object') {
-    return Object.keys(value).length === 0
   }
-
+  if (typeof value === 'boolean') {
+    return false
+  }
+  if (typeof value === 'number') {
+    if (value === 0) {
+      return true
+    }
+    return false
+  }
+  if (typeof value === 'string') {
+    if (value.length === 0) {
+      return true
+    }
+    return false
+  }
+  if (typeof value === 'symbol') {
+    return false
+  }
+  if (typeof value === 'function') {
+    return false
+  }
+  if (isDate(value)) {
+    if (Number.isNaN((value as Date).getTime())) {
+      return true
+    }
+    return false
+  }
+  if (isArray(value)) {
+    if ((value as any[]).length === 0) {
+      return true
+    }
+    return false
+  }
+  if (typeof (value as any).size === 'number') {
+    if ((value as any).size === 0) {
+      return true
+    }
+    return false
+  }
+  if (typeof (value as any).length === 'number') {
+    if ((value as any).length === 0) {
+      return true
+    }
+    return false
+  }
+  if (typeof value === 'object') {
+    if (Object.keys(value as object).length === 0) {
+      return true
+    }
+    return false
+  }
   return false
 }
 

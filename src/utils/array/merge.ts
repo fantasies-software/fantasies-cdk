@@ -9,19 +9,26 @@
  *  eg: `merge([{id:1,name:'a'},{id:2,name:'b'}],[{id:2,name:'c'},{id:3,name:'d'}],item=>item.id)` will return `[{id:2,name:'c'},{id:1,name:'a'}]`
  */
 export function merge<T>(root: readonly T[], others: readonly T[], matcher: (item: T) => any) {
-  if (!others && !root)
+  if (!others && !root) {
     return []
-  if (!others)
+  }
+  if (!others) {
     return root
-  if (!root)
+  }
+  if (!root) {
     return []
-  if (!matcher)
+  }
+  if (!matcher) {
     return root
+  }
   return root.reduce((acc, r) => {
     const matched = others.find(o => matcher(r) === matcher(o))
-    if (matched)
+    if (matched) {
       acc.push(matched)
-    else acc.push(r)
+    }
+    else {
+      acc.push(r)
+    }
     return acc
   }, [] as T[])
 }

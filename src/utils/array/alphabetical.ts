@@ -14,7 +14,5 @@ export function alphabetical<T>(array: readonly T[], getter: (item: T) => string
   if (order === 'desc') {
     return sorted.reverse()
   }
-  else {
-    return sorted
-  }
+  return sorted
 }

@@ -9,15 +9,17 @@ export function max(array: readonly [number, ...number[]]): number
 export function max(array: readonly number[]): number | null
 export function max<T>(array: readonly T[], getter: (item: T) => number): T | null
 export function max<T>(array: readonly T[], getter?: (item: T) => number): T | null {
-  if (!getter) {
-    getter = item => item as unknown as number
+  let getValue: (item: T) => number
+  if (getter) {
+    getValue = getter
+  }
+  else {
+    getValue = item => item as unknown as number
   }
   return boil(array, (pre, next) => {
-    if (getter(pre) > getter(next)) {
+    if (getValue(pre) > getValue(next)) {
       return pre
     }
-    else {
-      return next
-    }
+    return next
   })
 }

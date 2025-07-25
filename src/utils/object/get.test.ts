@@ -26,4 +26,22 @@ describe('get', () => {
   it('returns input for empty path', () => {
     expect(get({ a: 1 }, '')).toEqual({ a: 1 })
   })
+
+  it('returns default for undefined object', () => {
+    expect(get(undefined, 'a', 123)).toBe(123)
+  })
+
+  it('returns default for out-of-bounds array index', () => {
+    expect(get({ a: [1, 2, 3] }, 'a.10', 0)).toBe(0)
+  })
+
+  it('returns default for missing path with defaultValue=0/empty/null', () => {
+    expect(get({ a: 1 }, 'b', 0)).toBe(0)
+    expect(get({ a: 1 }, 'b', '')).toBe('')
+    expect(get({ a: 1 }, 'b', null)).toBe(null)
+  })
+
+  it('returns undefined for invalid path', () => {
+    expect(get({ a: 1 }, '[invalid')).toBe(undefined)
+  })
 })
