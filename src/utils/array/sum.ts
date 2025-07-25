@@ -1,3 +1,4 @@
+import { isArray } from '../typed'
 
 /**
  *  sum function to calculate the sum of an array of numbers or objects.
@@ -7,7 +8,7 @@
 export function sum<T extends number>(array: readonly T[]): number
 export function sum<T extends object>(array: readonly T[], selector: (item: T) => number): number
 export function sum<T>(array: readonly T[], selector?: (item: T) => number): number {
-  if (!array || array.length === 0) {
+  if (!isArray(array)) {
     return 0
   }
   if (selector) {

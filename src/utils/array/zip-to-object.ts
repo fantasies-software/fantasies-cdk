@@ -8,7 +8,7 @@ export function zipToObject<Key extends string | number | symbol, Val>(
   keys: Key[],
   values: Val | Val[] | ((key: Key, idx: number) => Val),
 ): Record<Key, Val> {
-  if (!keys || !keys.length) {
+  if (!isArray(keys)) {
     return {} as Record<Key, Val>
   }
 

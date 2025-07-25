@@ -6,7 +6,7 @@ import { isArray } from '../typed'
  *  eg: cluster([1, 2, 3], 2) => [[1, 2], [3]]
  */
 export function cluster<T>(array: readonly T[], size: number): T[][] {
-  if (size <= 0 || !isArray(array) || array.length === 0) {
+  if (size <= 0 || !isArray(array)) {
     return []
   }
   const clusterCount = Math.ceil(array.length / size)

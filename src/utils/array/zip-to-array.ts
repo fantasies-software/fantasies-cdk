@@ -1,3 +1,4 @@
+import { isArray } from '../typed'
 
 /**
  * Combines multiple arrays into an array of arrays, where each inner array contains elements from the input arrays at the same index.
@@ -13,11 +14,11 @@ export function zipToArray<T1, T2, T3, T4, T5, T6, T7, T8>(array1: T1[], array2:
 export function zipToArray<T1, T2, T3, T4, T5, T6, T7, T8, T9>(array1: T1[], array2: T2[], array3: T3[], array4: T4[], array5: T5[], array6: T6[], array7: T7[], array8: T8[], array9: T9[]): [T1, T2, T3, T4, T5, T6, T7, T8, T9][]
 export function zipToArray<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(array1: T1[], array2: T2[], array3: T3[], array4: T4[], array5: T5[], array6: T6[], array7: T7[], array8: T8[], array9: T9[], array10: T10[]): [T1, T2, T3, T4, T5, T6, T7, T8, T9, T10][]
 export function zipToArray<T>(...arrays: readonly T[][]): T[][] {
-  if (!arrays || !arrays.length) {
+  if (!isArray(arrays) || arrays.length === 0) {
     return []
   }
-  const safeArrays = arrays.map(arr => (Array.isArray(arr) ? arr : []))
+  const safeArrays = arrays.map(arr => Array.isArray(arr) ? arr : [])
   const maxLength = Math.max(...safeArrays.map(arr => arr.length))
   return Array.from({ length: maxLength })
-    .map((_, index) => safeArrays.map(array => array[index]))
+    .map((_, idx) => safeArrays.map(array => array[idx]))
 }
