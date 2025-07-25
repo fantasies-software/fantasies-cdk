@@ -1,4 +1,4 @@
-import { isPrimitive } from '../typed'
+import { isPrimitive } from '../type/typed'
 
 /**
  *  Clones an object deeply, preserving its type.

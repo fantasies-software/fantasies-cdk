@@ -1,4 +1,4 @@
-import { isArray, isFunction } from '../typed'
+import { isArray, isFunction } from '../type/typed'
 
 /**
  *  Converts an array of objects into a record (object) where the keys are derived from each object

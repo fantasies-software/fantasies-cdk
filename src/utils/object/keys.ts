@@ -1,4 +1,4 @@
-import { isArray, isObject } from '../typed'
+import { isArray, isObject } from '../type/typed'
 
 /**
  * Recursively retrieves all keys from an object, including nested objects and arrays.

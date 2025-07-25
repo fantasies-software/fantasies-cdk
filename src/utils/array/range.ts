@@ -1,4 +1,4 @@
-import { isFunction } from '../typed'
+import { isFunction } from '../type/typed'
 
 /**
  *  Generates a range of numbers or values based on the provided parameters. include the start and end values.
