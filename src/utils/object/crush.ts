@@ -10,11 +10,9 @@ export function crush<TValue extends object>(value: TValue): object {
   if (!value) {
     return {}
   }
-  else {
-    return objectify(
-      keys(value),
-      k => k,
-      k => get(value, k),
-    )
-  }
+  return objectify(
+    keys(value),
+    k => k,
+    k => get(value, k),
+  )
 }

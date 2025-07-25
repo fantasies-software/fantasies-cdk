@@ -27,4 +27,12 @@ describe('debounce', () => {
     debounced.flush(3)
     expect(fn).toHaveBeenCalledWith(3)
   })
+
+  it('should call func immediately if inactive', () => {
+    const fn = vi.fn()
+    const debounced = debounce({ delay: 10 }, fn)
+    debounced.cancel()
+    debounced(5)
+    expect(fn).toHaveBeenCalledWith(5)
+  })
 })

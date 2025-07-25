@@ -9,20 +9,14 @@ export function keys<TValue extends object>(value: TValue): string[] {
   if (!value) {
     return []
   }
-  else {
-    const getKeys = (nested: any, paths: string[]): string[] => {
-      if (isObject(nested)) {
-        return Object.entries(nested).flatMap(([k, v]) =>
-          getKeys(v, [...paths, k]),
-        )
-      }
-      else if (isArray(nested)) {
-        return nested.flatMap((item, i) => getKeys(item, [...paths, `${i}`]))
-      }
-      else {
-        return [paths.join('.')]
-      }
+  const getKeys = (nested: any, paths: string[]): string[] => {
+    if (isObject(nested)) {
+      return Object.entries(nested).flatMap(([k, v]) => getKeys(v, [...paths, k]))
     }
-    return getKeys(value, [])
+    if (isArray(nested)) {
+      return nested.flatMap((item, i) => getKeys(item, [...paths, `${i}`]))
+    }
+    return [paths.join('.')]
   }
+  return getKeys(value, [])
 }

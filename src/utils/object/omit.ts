@@ -7,18 +7,14 @@ export function omit<T, TKeys extends keyof T>(obj: T, keys: TKeys[]): Omit<T, T
   if (!obj) {
     return {} as Omit<T, TKeys>
   }
-  else {
-    if (!keys || keys.length === 0) {
-      return obj as Omit<T, TKeys>
-    }
-    else {
-      return keys.reduce(
-        (acc, key) => {
-          delete acc[key]
-          return acc
-        },
-        { ...obj },
-      )
-    }
+  if (!keys || keys.length === 0) {
+    return obj as Omit<T, TKeys>
   }
+  return keys.reduce(
+    (acc, key) => {
+      delete acc[key]
+      return acc
+    },
+    { ...obj },
+  )
 }

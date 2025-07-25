@@ -4,5 +4,9 @@ export type Falsy = null | undefined | false | '' | 0 | 0n
  * only truthy values
  */
 export function sift<T>(list: readonly (T | Falsy)[]): T[] {
-  return (list?.filter(x => !!x) as T[]) ?? []
+  if (!list) {
+    return []
+  }
+  const filtered = list.filter(x => !!x)
+  return filtered as T[]
 }

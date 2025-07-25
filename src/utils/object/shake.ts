@@ -7,16 +7,12 @@ export function shake<RemovedKeys extends string, T>(obj: T, filter: (value: any
   if (!obj) {
     return {} as T
   }
-  else {
-    const keys = Object.keys(obj) as (keyof T)[]
-    return keys.reduce((acc, key) => {
-      if (filter(obj[key])) {
-        return acc
-      }
-      else {
-        acc[key] = obj[key]
-        return acc
-      }
-    }, {} as T)
-  }
+  const keys = Object.keys(obj) as (keyof T)[]
+  return keys.reduce((acc, key) => {
+    if (filter(obj[key])) {
+      return acc
+    }
+    acc[key] = obj[key]
+    return acc
+  }, {} as T)
 }
