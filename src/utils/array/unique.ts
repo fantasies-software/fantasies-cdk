@@ -9,7 +9,13 @@ export function unique<T, K extends string | number | symbol>(array: readonly T[
     return []
   }
   const valueMap = array.reduce((acc, item) => {
-    const key = toKey ? toKey(item) : (item as any as string | number | symbol)
+    let key
+    if (toKey) {
+      key = toKey(item)
+    }
+    else {
+      key = item as any as string | number | symbol
+    }
     if (acc[key] !== undefined) {
       return acc
     }

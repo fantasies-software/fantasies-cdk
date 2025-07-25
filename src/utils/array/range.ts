@@ -13,9 +13,27 @@ export function* range<T = number>(
   valueOrMapper: T | ((i: number) => T) = i => i as T,
   step: number = 1,
 ): Generator<T> {
-  const mapper = isFunction(valueOrMapper) ? valueOrMapper : () => valueOrMapper
-  const start = end ? startOrLength : 0
-  const final = end ?? startOrLength
+  let mapper
+  if (isFunction(valueOrMapper)) {
+    mapper = valueOrMapper
+  }
+  else {
+    mapper = () => valueOrMapper
+  }
+  let start
+  if (end) {
+    start = startOrLength
+  }
+  else {
+    start = 0
+  }
+  let final
+  if (end !== undefined && end !== null) {
+    final = end
+  }
+  else {
+    final = startOrLength
+  }
   for (let i = start; i <= final; i += step) {
     yield mapper(i)
     if (i + step > final)
