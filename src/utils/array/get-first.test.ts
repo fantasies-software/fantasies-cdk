@@ -32,4 +32,10 @@ describe('getFirst', () => {
     const result = getFirst(input as any)
     expect(result).toBe(1)
   })
+
+  it('should return null for non-array inputs', () => {
+    const input = null as any
+    const result = getFirst(input)
+    expect(result).toBeNull()
+  })
 })
