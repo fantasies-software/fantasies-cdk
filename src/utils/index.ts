@@ -1,5 +1,7 @@
 export * from './array'
+export * from './async'
 export * from './functions'
 export * from './number'
 export * from './object'
+export * from './string'
 export * from './typed'
