@@ -49,4 +49,8 @@ describe('zipToArray', () => {
   it('should return empty array when all arguments are empty arrays', () => {
     expect(zipToArray([], [], [])).toEqual([])
   })
+
+  it('should return empty array', () => {
+    expect(zipToArray({} as any, {} as any)).toEqual([])
+  })
 })

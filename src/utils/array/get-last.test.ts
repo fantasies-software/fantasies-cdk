@@ -38,4 +38,10 @@ describe('getLast', () => {
     const result = getLast(input)
     expect(result).toBe(42)
   })
+
+  it('should return null for non-array inputs', () => {
+    const input = null as any
+    const result = getLast(input)
+    expect(result).toBeNull()
+  })
 })
