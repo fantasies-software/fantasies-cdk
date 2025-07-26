@@ -4,12 +4,12 @@
 <template>
   <div class="v-example">
     <div class="v-example__left">
-      <slot name="left"></slot>
+      <slot name="left" />
     </div>
     <div class="v-example__right">
-      <slot name="right"></slot>
+      <slot name="right" />
       <div class="v-example__button">
-        <slot name="button"></slot>
+        <slot name="button" />
       </div>
     </div>
   </div>

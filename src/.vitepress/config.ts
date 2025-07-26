@@ -1,8 +1,8 @@
-import { defineConfig } from 'vitepress'
+import type { VitePressSidebarOptions } from 'vitepress-sidebar/types'
 
-import { withSidebar } from 'vitepress-sidebar';
-import { withI18n } from 'vitepress-i18n';
-import { VitePressSidebarOptions } from 'vitepress-sidebar/types';
+import { defineConfig } from 'vitepress'
+import { withI18n } from 'vitepress-i18n'
+import { withSidebar } from 'vitepress-sidebar'
 
 const vitePressOptions = {
   title: '@fantasies/cdk',
@@ -14,7 +14,7 @@ const vitePressOptions = {
       { text: 'Composables', link: '/composables' },
       { text: 'Directives', link: '/directives' },
       { text: 'Utils', link: '/utils/array' },
-    ]
+    ],
   },
   socialLinks: [
     { icon: 'github', link: 'https://github.com/fantasies-software/fantasies-cdk' },
@@ -25,8 +25,8 @@ const vitePressSidebarOptions: VitePressSidebarOptions = {
   excludeByGlobPattern: ['changelog.md', 'README.md'],
   collapsed: false,
   capitalizeFirst: true,
-  includeFolderIndexFile:true,
-  includeRootIndexFile:false,
+  includeFolderIndexFile: true,
+  includeRootIndexFile: false,
   useTitleFromFileHeading: false,
   useTitleFromFrontmatter: false,
   useFolderTitleFromIndexFile: false,
@@ -37,8 +37,8 @@ const vitePressSidebarOptions: VitePressSidebarOptions = {
 
 const vitePressI18nConfig = {
   locales: ['en', 'zhHans'],
-};
+}
 
 export default defineConfig(
-  withSidebar(withI18n(vitePressOptions, vitePressI18nConfig), vitePressSidebarOptions)
-);
+  withSidebar(withI18n(vitePressOptions, vitePressI18nConfig), vitePressSidebarOptions),
+)
