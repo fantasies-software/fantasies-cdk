@@ -1,4 +1,4 @@
-import { isArray } from '../typed'
+import { isArray } from '../type/typed'
 
 /**
  *  Removes duplicate items from an array based on a key function.

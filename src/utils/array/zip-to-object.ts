@@ -1,4 +1,4 @@
-import { isArray, isFunction } from '../typed'
+import { isArray, isFunction } from '../type/typed'
 
 /**
  * Combines keys and values into an object, where each key is associated with a value.

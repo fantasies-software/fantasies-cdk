@@ -1,4 +1,4 @@
-import { isPromise } from '../typed'
+import { isPromise } from '../type/typed'
 
 export function tryit<Args extends any[], Return>(func: (...args: Args) => Return) {
   return (

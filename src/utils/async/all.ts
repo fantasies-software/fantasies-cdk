@@ -1,4 +1,4 @@
-import { isArray } from '../typed'
+import { isArray } from '../type/typed'
 import { AggregateError } from './aggregate-error'
 
 type PromiseValues<T extends Promise<any>[]> = {

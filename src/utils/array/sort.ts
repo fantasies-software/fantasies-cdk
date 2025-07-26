@@ -1,4 +1,4 @@
-import { isArray } from '../typed'
+import { isArray } from '../type/typed'
 
 /**
  *  sort an array based on a getter function and order

@@ -1,4 +1,4 @@
-import { isArray } from '../typed'
+import { isArray } from '../type/typed'
 
 /**
  *  count the occurrences of each item in an array based on a key

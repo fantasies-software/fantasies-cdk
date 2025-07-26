@@ -1,4 +1,4 @@
-import { isArray } from '../typed'
+import { isArray } from '../type/typed'
 
 /**
  *  Flattens an array of arrays into a single array.

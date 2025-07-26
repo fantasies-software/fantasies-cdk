@@ -1,16 +1,17 @@
 {
   "name": "@fantasies/cdk",
+  "type": "module",
   "version": "0.1.1",
   "description": "utils",
   "author": "devcui <devcui@outlook.com>",
   "license": "MIT",
-  "homepage": "https://github.com/devcui/fantasies-cdk#readme",
+  "homepage": "https://github.com/fantasies-software/fantasies-cdk#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/devcui/fantasies-cdk.git"
+    "url": "git+https://github.com/fantasies-software/fantasies-cdk.git"
   },
   "bugs": {
-    "url": "https://github.com/devcui/fantasies-cdk/issues"
+    "url": "https://github.com/fantasies-software/fantasies-cdk/issues"
   },
   "keywords": [
     "fantasies",
@@ -42,7 +43,10 @@
     "test:coverage": "vitest run --coverage",
     "test:update": "vitest -u",
     "lint": "eslint . --ext .ts,.vue",
-    "lint:fix": "eslint . --ext .ts,.vue --fix"
+    "lint:fix": "eslint . --ext .ts,.vue --fix",
+    "docs:dev": "vitepress dev src",
+    "docs:build": "vitepress build src",
+    "docs:preview": "vitepress preview src"
   },
   "peerDependencies": {
     "vue": "^3.5.17"
@@ -68,6 +72,8 @@
     "typescript": "^5.8.3",
     "vite": "^7.0.4",
     "vite-plugin-dts": "^4.5.4",
+    "vitepress": "^2.0.0-alpha.8",
+    "vitepress-sidebar": "^1.33.0",
     "vitest": "^3.2.4",
     "vitest-axe": "^0.1.0",
     "vitest-browser-vue": "^1.0.0",

@@ -7,4 +7,9 @@ export default antfu({
   rules: {
     'ts/no-unsafe-function-type': 'off',
   },
+  ignores: [
+    'node_modules',
+    'dist',
+    'cache',
+  ],
 })

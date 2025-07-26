@@ -1,4 +1,4 @@
-import { isArray, isFunction } from '../typed'
+import { isArray, isFunction } from '../type/typed'
 
 /**
  *  Selects items from an array based on a condition and maps them to a new value.

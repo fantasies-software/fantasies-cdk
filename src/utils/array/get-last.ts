@@ -1,4 +1,4 @@
-import { isArray } from '../typed'
+import { isArray } from '../type/typed'
 
 /**
  *  get the last element of an array or return a default value

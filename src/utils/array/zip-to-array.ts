@@ -1,4 +1,4 @@
-import { isArray } from '../typed'
+import { isArray } from '../type/typed'
 
 /**
  * Combines multiple arrays into an array of arrays, where each inner array contains elements from the input arrays at the same index.

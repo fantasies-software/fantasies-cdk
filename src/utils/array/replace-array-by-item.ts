@@ -1,4 +1,4 @@
-import { isArray } from '../typed'
+import { isArray } from '../type/typed'
 
 /**
  *  Replaces the first occurrence of an item in an array with a specified item based on a matching function.

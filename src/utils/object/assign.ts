@@ -1,4 +1,4 @@
-import { isObject } from '../typed'
+import { isObject } from '../type/typed'
 
 /**
  * Recursively merges properties from `override` into `initial`.
