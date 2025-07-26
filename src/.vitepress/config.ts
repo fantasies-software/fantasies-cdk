@@ -1,7 +1,6 @@
 import type { VitePressSidebarOptions } from 'vitepress-sidebar/types'
 
 import { defineConfig } from 'vitepress'
-import { withI18n } from 'vitepress-i18n'
 import { withSidebar } from 'vitepress-sidebar'
 
 const vitePressOptions = {
@@ -35,10 +34,7 @@ const vitePressSidebarOptions: VitePressSidebarOptions = {
   documentRootPath: '/src',
 }
 
-const vitePressI18nConfig = {
-  locales: ['en', 'zhHans'],
-}
 
 export default defineConfig(
-  withSidebar(withI18n(vitePressOptions, vitePressI18nConfig), vitePressSidebarOptions),
+  withSidebar(vitePressOptions, vitePressSidebarOptions),
 )
