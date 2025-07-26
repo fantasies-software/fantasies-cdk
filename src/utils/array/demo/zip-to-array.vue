@@ -1,26 +1,27 @@
 <script setup lang="ts">
 import { VPButton } from 'vitepress/theme'
 import { ref } from 'vue'
-import { boil } from '../boil'
+import { zipToArray } from '../zip-to-array'
 
-const input = [1, 5, 3, 9, 2]
-const output = ref<number | null>(null)
+const inputA = ['a', 'b']
+const inputB = [1, 2]
+const output = ref<any>(null)
 function execute() {
-  output.value = boil(input, (a, b) => (a > b ? a : b))
+  output.value = zipToArray(inputA, inputB)
 }
 </script>
 
 <template>
   <VExample>
     <template #left>
-      {{ input }}
+      {{ inputA }} - {{ inputB }}
     </template>
     <template #right>
       {{ output }}
     </template>
     <template #button>
       <VPButton @click="execute">
-        Click to Boil
+        Click to ZipToArray
       </VPButton>
     </template>
   </VExample>

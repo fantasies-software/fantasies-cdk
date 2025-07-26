@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { VPButton } from 'vitepress/theme'
 import { ref } from 'vue'
-import { boil } from '../boil'
+import { sift } from '../sift'
 
-const input = [1, 5, 3, 9, 2]
-const output = ref<number | null>(null)
+const input = [0, 1, false, 2, '', 3, null]
+const output = ref<any>(null)
 function execute() {
-  output.value = boil(input, (a, b) => (a > b ? a : b))
+  output.value = sift(input)
 }
 </script>
 
@@ -20,7 +20,7 @@ function execute() {
     </template>
     <template #button>
       <VPButton @click="execute">
-        Click to Boil
+        Click to Sift
       </VPButton>
     </template>
   </VExample>

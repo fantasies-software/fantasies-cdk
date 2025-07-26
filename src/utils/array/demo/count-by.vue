@@ -1,12 +1,16 @@
 <script setup lang="ts">
 import { VPButton } from 'vitepress/theme'
 import { ref } from 'vue'
-import { boil } from '../boil'
+import { countBy } from '../count-by'
 
-const input = [1, 5, 3, 9, 2]
-const output = ref<number | null>(null)
+const input = [
+  { name: 'Alice' },
+  { name: 'Bob' },
+  { name: 'Alice' },
+]
+const output = ref<any>(null)
 function execute() {
-  output.value = boil(input, (a, b) => (a > b ? a : b))
+  output.value = countBy(input, item => item.name)
 }
 </script>
 
@@ -20,7 +24,7 @@ function execute() {
     </template>
     <template #button>
       <VPButton @click="execute">
-        Click to Boil
+        Click to CountBy
       </VPButton>
     </template>
   </VExample>
