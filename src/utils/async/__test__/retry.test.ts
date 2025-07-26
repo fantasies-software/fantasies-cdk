@@ -30,7 +30,7 @@ describe('retry', () => {
       }),
     ).rejects.toThrow()
     expect(count).toBe(2)
-    // 由于 setTimeout/Promise 定时器精度在不同平台下可能有抖动，这里允许更宽松的误差范围
+    // Due to setTimeout/Promise timer accuracy jitter on different platforms, a looser error range is allowed here
     expect(Date.now() - start).toBeGreaterThanOrEqual(5)
   })
 
@@ -58,7 +58,7 @@ describe('retry', () => {
         exit('custom')
         return 1 as any
       }),
-    ).rejects.toThrow('ustom') // 实际抛出 'ustom'
+    ).rejects.toThrow('ustom') // actually throws 'ustom'
   })
 
   it('returns undefined if never enters loop (times=0)', async () => {

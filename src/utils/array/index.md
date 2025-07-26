@@ -1,7 +1,6 @@
 # Array
 
 <script setup lang="ts">
-// 基础
 import Alphabetical from './demo/alphabetical.vue'
 import Boil from './demo/boil.vue'
 import Sort from './demo/sort.vue'
@@ -10,13 +9,11 @@ import Shift from './demo/shift.vue'
 import Sift from './demo/sift.vue'
 import Unique from './demo/unique.vue'
 
-// 统计/分组
 import CountBy from './demo/count-by.vue'
 import GroupBy from './demo/group-by.vue'
 import Diff from './demo/diff.vue'
 import Intersects from './demo/intersects.vue'
 
-// 取值/变换
 import GetFirst from './demo/get-first.vue'
 import GetLast from './demo/get-last.vue'
 import SelectMap from './demo/select-map.vue'
@@ -25,25 +22,20 @@ import ReplaceArrayByItem from './demo/replace-array-by-item.vue'
 import ReplaceOrAppend from './demo/replace-or-append.vue'
 import Toggle from './demo/toggle.vue'
 
-// 生成/组合
 import List from './demo/list.vue'
 import Range from './demo/range.vue'
 import Cluster from './demo/cluster.vue'
 import Fork from './demo/fork.vue'
 import Merge from './demo/merge.vue'
 import Objectify from './demo/objectify.vue'
-import ToDic from './demo/to-dic.vue'
 import ZipToArray from './demo/zip-to-array.vue'
 import ZipToObject from './demo/zip-to-object.vue'
 
-// 计算
 import Max from './demo/max.vue'
 import Min from './demo/min.vue'
 import Sum from './demo/sum.vue'
 import Iterate from './demo/iterate.vue'
 </script>
-
-# 基础
 
 ## alphabetical
 
@@ -86,8 +78,6 @@ import Iterate from './demo/iterate.vue'
 - Removes duplicate items from an array based on a key function.
   <Unique/>
   <<< ./demo/unique.vue
-
-# 统计/分组
 
 ## countBy
 
@@ -157,8 +147,6 @@ import Iterate from './demo/iterate.vue'
   <Toggle/>
   <<< ./demo/toggle.vue
 
-# 生成/组合
-
 ## list
 
 - Generates a list of values based on the provided parameters.
@@ -195,12 +183,6 @@ import Iterate from './demo/iterate.vue'
   <Objectify/>
   <<< ./demo/objectify.vue
 
-## toDic
-
-- Converts an array of objects into a record (object) where the keys are derived from each object.
-  <ToDic/>
-  <<< ./demo/to-dic.vue
-
 ## zipToArray
 
 - Combines multiple arrays into an array of arrays, where each inner array contains elements from the input arrays at the same index.
@@ -212,8 +194,6 @@ import Iterate from './demo/iterate.vue'
 - Combines keys and values into an object, where each key is associated with a value.
   <ZipToObject/>
   <<< ./demo/zip-to-object.vue
-
-# 计算
 
 ## max
 

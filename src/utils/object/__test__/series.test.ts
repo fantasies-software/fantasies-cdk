@@ -40,7 +40,7 @@ describe('series', () => {
     expect(s.spin('a', 2)).toBe('c')
     expect(s.spin('a', -1)).toBe('c')
     expect(s.spin('a', 0)).toBe('a')
-    expect(s.spin('a', 5)).toBe('c') // 实际为 'c'
+    expect(s.spin('a', 5)).toBe('c') // actually is 'c'
     expect(s.spin('a', -4)).toBe('c')
   })
 

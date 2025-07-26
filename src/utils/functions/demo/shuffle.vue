@@ -1,29 +1,27 @@
 <script setup lang="ts">
 import { VPButton } from 'vitepress/theme'
 import { ref } from 'vue'
-import { toDic } from '../to-dic'
+import { shuffle } from '../shuffle'
 
-const input = [
-  { id: 1, name: 'Alice' },
-  { id: 2, name: 'Bob' },
-]
-const output = ref<any>(null)
+const items = ref([1, 2, 3, 4, 5])
+const result = ref<number[]>([])
+
 function execute() {
-  output.value = toDic(input, item => item.id, item => item.name)
+  result.value = shuffle(items.value)
 }
 </script>
 
 <template>
   <VExample>
     <template #left>
-      {{ input }}
+      <div>Original array: {{ items }}</div>
     </template>
     <template #right>
-      {{ output }}
+      <div>Shuffled: {{ result }}</div>
     </template>
     <template #button>
-      <VPButton @click="execute">
-        Click to ToDic
+      <VPButton class="ml-2" @click="execute">
+        Shuffle
       </VPButton>
     </template>
   </VExample>

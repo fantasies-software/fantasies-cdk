@@ -1,3 +1,6 @@
+/**
+ *  This is useful for creating hybrid objects that act as both data containers and callable functions, similar to Python's callable objects.
+ */
 export function callable<
   TValue,
   TObj extends Record<string | number | symbol, TValue>,

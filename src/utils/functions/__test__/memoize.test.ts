@@ -50,7 +50,7 @@ describe('memoize', () => {
     const cache: any = {}
     const m = memoize(cache, fn, () => '', null)
     expect(m(1)).toBe(1)
-    expect(m(2)).toBe(1) // key 一样，缓存命中
+    expect(m(2)).toBe(1) // Same key, cache hit
   })
 
   it('should work with ttl=0', () => {

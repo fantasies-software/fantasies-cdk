@@ -1,5 +1,5 @@
 import { isArray } from '../type/typed'
-import { toDic } from './to-dic'
+import { objectify } from './objectify'
 
 /**
  * Checks if two arrays intersect based on a primary key function.
@@ -22,7 +22,7 @@ export function intersects<T, K extends string | number | symbol>(
   else {
     primaryKeyFn = item => item as unknown as K
   }
-  const dicA = toDic(array1, primaryKeyFn)
+  const dicA = objectify(array1, primaryKeyFn)
   return array2.some((item) => {
     const key = primaryKeyFn(item)
     return dicA[key] !== undefined
