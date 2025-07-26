@@ -4,6 +4,7 @@ import { defineConfig } from 'vitepress'
 import { withSidebar } from 'vitepress-sidebar'
 
 const vitePressOptions = {
+  base: '/fantasies-cdk/',
   title: '@fantasies/cdk',
   description: 'a set of toolkits for Vue',
   themeConfig: {
@@ -21,6 +22,7 @@ const vitePressOptions = {
 }
 
 const vitePressSidebarOptions: VitePressSidebarOptions = {
+  basePath: '/fantasies-cdk/',
   excludeByGlobPattern: ['changelog.md', 'README.md'],
   collapsed: false,
   capitalizeFirst: true,
