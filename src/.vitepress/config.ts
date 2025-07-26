@@ -34,7 +34,6 @@ const vitePressSidebarOptions: VitePressSidebarOptions = {
   documentRootPath: '/src',
 }
 
-
 export default defineConfig(
   withSidebar(vitePressOptions, vitePressSidebarOptions),
 )
