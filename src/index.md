@@ -8,13 +8,13 @@ hero:
   actions:
     - theme: alt
       text: Components
-      link: /components
+      link: /components/button
     - theme: alt
       text: Composables
-      link: /composables
+      link: /composables/use-demo
     - theme: alt
       text: Directives
-      link: /directives
+      link: /directives/v-demo
     - theme: alt
       text: Utils
       link: /utils/array
