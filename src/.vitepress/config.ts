@@ -1,13 +1,20 @@
-import type { VitePressSidebarOptions } from 'vitepress-sidebar/types'
+import type { UserConfig } from 'vitepress'
 
+import type { VitePressSidebarOptions } from 'vitepress-sidebar/types'
 import { defineConfig } from 'vitepress'
 import { withSidebar } from 'vitepress-sidebar'
 
-const vitePressOptions = {
+const vitePressOptions: UserConfig = {
   base: '/fantasies-cdk/',
   title: '@fantasies/cdk',
   description: 'a set of toolkits for Vue',
+  sitemap: {
+    hostname: 'https://fantasies-software.github.io/fantasies-cdk',
+  },
   themeConfig: {
+    search: {
+      provider: 'local',
+    },
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Components', link: '/components/button' },
@@ -15,17 +22,21 @@ const vitePressOptions = {
       { text: 'Directives', link: '/directives/v-demo' },
       { text: 'Utils', link: '/utils/array' },
     ],
+    footer: {
+      message: 'Released under the MIT License.',
+      copyright: 'Copyright © 2025 Fantasies Software',
+    },
   },
-  socialLinks: [
-    { icon: 'github', link: 'https://github.com/fantasies-software/fantasies-cdk' },
-  ],
+  // socialLinks: [
+  //   { icon: 'github', link: 'https://github.com/fantasies-software/fantasies-cdk' },
+  // ],
 }
 
 const vitePressSidebarOptions: VitePressSidebarOptions = {
   basePath: '/fantasies-cdk/',
   excludeByGlobPattern: ['changelog.md', 'README.md'],
-  collapsed: false,
-  capitalizeFirst: false,
+  collapsed: true,
+  capitalizeFirst: true,
   includeFolderIndexFile: true,
   includeRootIndexFile: false,
   useFolderLinkFromIndexFile: false,
