@@ -1,14 +1,28 @@
 ---
 layout: home
+title: Fantasies CDK
+titleTemplate: Fantasies CDK
+description:  a set of toolkits for vue
+head:
+  - - meta
+    - name: description
+      content: v-echarts-ui is a Vue3 Charts Component Library
+  - - meta
+    - name: keywords
+      content: v-echarts-ui | echarts Vue3 Charts Component Library
 
+editLink: true
+lastUpdated: true
 hero:
   name: "@fantasies/cdk"
   text: "a set of toolkits for vue"
   tagline: Simple & Convenient
+  image:
+    src: https://avatars.githubusercontent.com/u/220744167
   actions:
     - theme: alt
       text: Components
-      link: /components/button
+      link: /components/Button
     - theme: alt
       text: Composables
       link: /composables/use-demo

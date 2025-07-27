@@ -15,9 +15,13 @@ const vitePressOptions: UserConfig = {
     search: {
       provider: 'local',
     },
+    outline: 'deep',
+    socialLinks: [
+      { icon: 'github', link: 'https://github.com/fantasies-software/fantasies-cdk' },
+    ],
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Components', link: '/components/button' },
+      { text: 'Components', link: '/components/Button' },
       { text: 'Composables', link: '/composables/use-demo' },
       { text: 'Directives', link: '/directives/v-demo' },
       { text: 'Utils', link: '/utils/array' },
