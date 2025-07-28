@@ -24,6 +24,7 @@ export default defineConfig({
       provider: 'istanbul',
       exclude: [
         ...coverageConfigDefaults.exclude,
+        'src/**/demo/**',
       ],
     },
     clearMocks: true,
